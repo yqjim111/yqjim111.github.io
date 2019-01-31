@@ -25,6 +25,7 @@ function draw() {
   }
 
   for (var i = 0; i < m; i++) {
+    noStroke();
     fill(255 / 60 * m, 125, RGBStrip * i, 10);
     rect(0, 800 - i * HeightStrip, width, HeightStrip);
   }
