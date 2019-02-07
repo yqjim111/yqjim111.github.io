@@ -9,10 +9,9 @@ function draw() {
   var h = hour();
   var m = minute();
   var s = second();
-  R = 125;
 
   for (var i = 0; i < s; i++) {
-    fill(R, 255 / 60 * m, RGBStrip * i, 10);
+    fill(RGBStrip * i, 10, 255 / 60 * m, RGBStrip * i, 0);
     rect(WidthStrip * i, 0, WidthStrip, height);
   }
 
@@ -25,6 +24,7 @@ function draw() {
   }
 
   for (var i = 0; i < m; i++) {
+    noStroke();
     fill(255 / 60 * m, 125, RGBStrip * i, 10);
     rect(0, 800 - i * HeightStrip, width, HeightStrip);
   }
