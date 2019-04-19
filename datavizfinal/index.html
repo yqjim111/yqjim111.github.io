@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<title>Future Scenario</title>
+		<!-- discourage the browser from caching the page -->    
+   		<meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate' />
+    	<meta http-equiv='Pragma' content='no-cache' />
+    	<meta http-equiv='Expires' content='0' />    
+
+    	<!-- tells mobile devices how to scale the page -->    
+    	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    	<!-- stylesheet links -->
+    	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />     
+    	<link href='style.css' rel='stylesheet' />
+
+    	<!-- javascript links -->
+    	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    	<!-- Leaflet -->
+    	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+    	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    	<script src="http://d3js.org/d3.v3.min.js"></script>
+
+
+	</head>
+	<body>
+		<script type="text/javascript" src="PRmunicipality.js"></script>
+
+		<div class="grid">
+			<div class="title">Predicting Puerto Rico</div>
+			<div class="indicators">
+				<div class="A1">
+					<div id="button1">Unemployment</div>
+				</div>
+				<div class="A2">
+					<div id="button2">WeeklyIncome</div>
+				</div>
+
+				<div class="A3">Tan Warefare</div>
+				<div class="A4">Total Income</div>
+				<div class="A5">Population</div>
+			</div>
+			<div class="map" id="map">
+				<script type="text/javascript" src="map.js"></script>
+			</div>
+
+			<div class="singapore">Singapore</div>
+			<div class="landtrust">Landtrust</div>
+			<div class="policy">
+				<div class="B1">Income Tax Rate</div>
+				<div class="B2">Gas Price</div>
+				<div class="B3">Health Care</div>
+
+			</div>
+			<div class="tourism">Tourism</div>
+			<div class="footer">Footer</div>
+
+		</div>
+	</body>
