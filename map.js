@@ -8,30 +8,52 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieXFqaW0xMTEiLCJhIjoiY2psb2k5ZGZkMXR1czNxdDV3d
 
 'use strict'
 
+// MAP1
+
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
     center: [-66.42, 18.23],
-    zoom: 8,
+    zoom: 7.5,
     pitch: 0
 })
 
-// create an instance of NavigationControl
-let navigation = new mapboxgl.NavigationControl({
-    showCompass: true
-})
+// ####Define Color Code####
+var weeklyIncomeColor = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'AverageWee'],
+                 0, '#F2F12D',
+                 300, '#EED322',
+                 450, '#E6B71E',
+                 600, '#DA9C20',
+                 750, '#CA8323',
+                 900, '#B86B25'
+             ]
 
-// add the navigation to your map
-map.addControl(navigation, 'top-left')
+var unemploymentColor = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'NSA_Unempl'],
+                3,'#800026',
+                6,'#BD0026',
+                9,'#E31A1C',
+                12,'#FC4E2A',
+                15,'#FD8D3C'
+                ]
 
-
-
-// create an instance of ScaleControl
-var scale = new mapboxgl.ScaleControl({
-    maxWidth: 80,
-    unit: 'imperial'
-})
-
+var tanfColor = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'TANF_Numbe'],
+                31,'#edf8fb',
+                500,'#ccece6',
+                1000,'#99d8c9',
+                1500,'#66c2a4',
+                2000,'#41ae76',
+                2500,'#238b45',
+                3500,'#005824'
+                ]  
 
 
 map.on('load', function() {
@@ -47,10 +69,13 @@ map.on('load', function() {
         'type': 'fill',
         'paint': {
             'fill-color': unemploymentColor,
+            'fill-outline-color': '#000000',
             'fill-opacity': 0.75
+
         }
     });        console.log(map.getStyle().layers)
 });
+              
 
 map.on('mousemove', 'puertoRicoAll', function(e) {
         // Change the cursor style as a UI indicator.
@@ -70,30 +95,78 @@ map.on('mousemove', 'puertoRicoAll', function(e) {
         popup.remove();
     });
 
-var weeklyIncomeColor = [
-                 'interpolate',
-                 ['linear'],
-                 ['get', 'AverageWee'],
-                 0, '#F2F12D',
-                 300, '#EED322',
-                 450, '#E6B71E',
-                 600, '#DA9C20',
-                 750, '#CA8323',
-                 900, '#B86B25'
-             ]
-
-var unemploymentColor = [
-                 'interpolate',
-                 ['linear'],
-                 ['get', 'NSA_Unempl'],
-            3,'#800026',
-           6,'#BD0026',
-           9,'#E31A1C',
-           12,'#FC4E2A',
-           15,'#FD8D3C'
-]
 
 
+
+
+// ####MAP2####
+var mapWelfare = new mapboxgl.Map({
+    container: 'mapWelfare',
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: [-66.42, 18.23],
+    zoom: 7.5,
+    pitch: 0
+})
+
+mapWelfare.on('load', function() {
+ 
+    mapWelfare.addSource('puertoRicoAll', {
+        'type': 'geojson',
+        "data":puertoricodata
+    });
+     
+    mapWelfare.addLayer({
+        'id': 'puertoRicoAll',
+        'source': 'puertoRicoAll',
+        'type': 'fill',
+        'paint': {
+            'fill-color': tanfColor,
+            'fill-outline-color': '#000000',
+            'fill-opacity': 0.75
+        }
+    });        
+    // console.log(mapWelfare.getStyle().layers)
+});
+
+
+
+
+
+
+// ####MAP3####
+var mapAnnualincome = new mapboxgl.Map({
+    container: 'mapAnnualincome',
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: [-66.42, 18.23],
+    zoom: 7.5,
+    pitch: 0
+})
+
+mapAnnualincome.on('load', function() {
+ 
+    mapAnnualincome.addSource('puertoRicoAll', {
+        'type': 'geojson',
+        "data":puertoricodata
+    });
+     
+    mapAnnualincome.addLayer({
+        'id': 'puertoRicoAll',
+        'source': 'puertoRicoAll',
+        'type': 'fill',
+        'paint': {
+            'fill-color': weeklyIncomeColor,
+            'fill-outline-color': '#000000',
+            'fill-opacity': 0.75
+        }
+    });        
+    // console.log(mapAnnualincome.getStyle().layers)
+});
+
+
+
+
+
+// Interactivity
 var popup = new mapboxgl.Popup({
     closeButton: false
 });
@@ -122,8 +195,6 @@ d3.select("#button1")
 })
 
 
-// MAP2 
-
 d3.select("#button2")
 .on("click",function(){
     map.setPaintProperty("puertoRicoAll", 'fill-color', weeklyIncomeColor);
@@ -134,7 +205,7 @@ d3.select("#button2")
         // Single out the first found feature.
         var feature = e.features[0];
 
-        // Display a popup with the name of the county
+        // Display a popup
         popup.setLngLat(e.lngLat)
             .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.AverageWee)
             .addTo(map);
@@ -145,3 +216,6 @@ d3.select("#button2")
         popup.remove();
     });
 })
+
+
+

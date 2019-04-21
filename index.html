@@ -23,41 +23,36 @@
     	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     	<script src="http://d3js.org/d3.v3.min.js"></script>
-    	<script type="text/javascript" src="d3.js"></script>
 
 
 	</head>
 	<body>
 		<script type="text/javascript" src="PRmunicipality.js"></script>
-
 		<div class="grid">
-			<div class="title">Predicting Puerto Rico</div>
-			<div class="indicators">
-				<div class="A1">
-					<div id="button1">Unemployment</div>
-				</div>
-				<div class="A2">
-					<div id="button2">WeeklyIncome</div>
-				</div>
-
-				<div class="A3">Tan Warefare</div>
-				<div class="A4">Total Income</div>
-				<div class="A5">Population</div>
+			<div class="header"></div>
+			<div class="textall">
+				<div class="title">Predicting Puerto Rico</div>
+				<div class="body">Body Text</div>
 			</div>
-			<div class="map" id="map">
+			<div class="sliderbar">
+				<!-- Slider Bar Put Here -->
+				<div class="A1">Unemployment Slider</div>
+				<div class="A2">AnnualWeeklyIncome Slider</div>
+				<div class="A3">Tan Warefare Slider</div>
+			</div>
+			<div class="scenario">
+				<div class="singapore">
+					<div id="button1">Singapore</div>
+				</div>
+				<div class="landtrust">
+					<div id="button2">Landtrust</div>
+				</div>
+			</div>
+			<div class="mapall" id="mapall">
+				<div class="map" id="map"></div>
+				<div class="mapWelfare" id="mapWelfare"></div>
+				<div class="mapAnnualincome" id="mapAnnualincome"></div>
 				<script type="text/javascript" src="map.js"></script>
 			</div>
-
-			<div class="singapore">Singapore</div>
-			<div class="landtrust">Landtrust</div>
-			<div class="policy">
-				<div class="B1">Income Tax Rate</div>
-				<div class="B2">Gas Price</div>
-				<div class="B3">Health Care</div>
-
-			</div>
-			<div class="tourism">Tourism</div>
-			<div class="footer">Footer</div>
-
 		</div>
 	</body>
