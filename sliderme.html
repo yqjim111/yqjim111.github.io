@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<title>d3-simple-slider</title>
+
+<!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+<!-- <script src="https://unpkg.com/d3-simple-slider"></script> -->
+
+
+
+<div class="container">
+  <div class="row align-items-center">
+    <div id="sliderValue"></div>
+    <div id="slider"></div>
+    <div id="outputValue"></div>
+
+<!-- I created 3 new divs for the second slider in the same class -->
+    <div id="sliderValue2"></div>
+    <div id="slider2"></div>
+    <div id="outputValue2"></div>
+
+<!-- I created 3 new divs for the third slider in the same class -->
+    <div id="sliderValue3"></div>
+    <div id="slider3"></div>
+    <div id="outputValue3"></div>
+
+  </div>
+</div>
+
+<!-- <script>
+  var data = [0.8, 1.97];//boundaries of slider
+  var input1 = 450//dummy values for each input, to be replaced with data from the columns of our geojson
+  var input2 = 3.6
+  var input3 = 280.48
+  var slider1Output = 1//default position of the sliders
+  var slider2Output = 1
+  var slider3Output = 1
+  //define the slider
+  var slider= d3
+    .sliderBottom()
+    .min(d3.min(data))
+    .max(d3.max(data))
+    .width(300)
+    .ticks(5)
+    .default(1)
+    .on('onchange', function(d){//this function detects when the slider moves
+        d3.select('#sliderValue').text(d);//this displays the slider value
+        slider1Output = d;
+          var valueAfterCalculations = yourCalculations(d, input1)//the first of such variables, and the variables it uses
+          var valueAfterCalculations2 = yourCalculations2(d, input3, slider2Output)//the second such variable
+          var valueAfterCalculations3 = yourCalculations3(slider3Output, input2, slider2Output)//and the third such variable
+        d3.select('#outputValue').text(valueAfterCalculations);//this displays the results of the calcualtions
+        d3.select('#outputValue2').text(valueAfterCalculations2);//this is important: it makes sure slider2 updates with changes to slider1
+    });
+
+//an svg to put slider on
+ var svg = d3.select('#slider')
+    .append('svg')
+    .attr('width', 500)
+    .attr('height', 100)
+    .append('g')
+    .attr('transform', 'translate(30,15)');
+//call the slider as you would an axis
+ svg.call(slider);
+
+
+//the first function I wrote
+  function yourCalculations(slider1Output, input1){
+    if (input1 < 427){
+          var f = input1*1.56*slider1Output;
+        } else if (input1 < 488){
+          var f = input1*slider1Output;
+        } else {
+          var f = input1
+        }
+      return f
+  }
+
+//********************************Here's the stuff for my second slider*************************************************
+
+  //A new variable for the boundaries of my second slider
+      var data2 = [0, 3.56];
+  //I define the second slider
+  var slider2= d3
+    .sliderBottom()
+    .min(d3.min(data2))//I assume I need to put data2 here
+    .max(d3.max(data2))//and here
+    .width(300)
+    .ticks(5)
+    .default(1)
+    .on('onchange', function(d){//this function detects when the slider moves
+        d3.select('#sliderValue2').text(d);//this displays the slider value
+        slider2Output = d;
+          var valueAfterCalculations = yourCalculations(slider1Output, input1)
+          var valueAfterCalculations2 = yourCalculations2(slider1Output, input3, d)
+          var valueAfterCalculations3 = yourCalculations3(slider3Output, input2, d)
+        d3.select('#outputValue2').text(valueAfterCalculations2);//this displays the results of the calcualtions
+        d3.select('#outputValue3').text(valueAfterCalculations3);//very important: it makes sure slider3 updates with changes to slider2
+    });
+
+  //an svg to put slider2 on
+  var svg = d3.select('#slider2')
+    .append('svg')
+    .attr('width', 500)
+    .attr('height', 100)
+    .append('g')
+    .attr('transform', 'translate(30,30)');
+  //call the slider as you would an axis
+  svg.call(slider2);
+
+
+  //the second function I wrote
+  function yourCalculations2(slider1Output, input3, slider2Output){
+        var g = ((1-slider1Output)*(289.16)+input3)*slider2Output;
+    return g
+  }
+
+//**********************************************************Here's the stuff for my third slider****************************************
+
+    //A new variable for the boundaries of my third slider
+        var data3 = [0.43, 1.79];
+    //I define the third slider
+    var slider3= d3
+      .sliderBottom()
+      .min(d3.min(data3))
+      .max(d3.max(data3))
+      .width(300)
+      .ticks(5)
+      .default(1)
+      .on('onchange', function(d){//this function detects when the slider moves
+          d3.select('#sliderValue3').text(d);//this displays the slider value
+          slider3Output = d;
+            var valueAfterCalculations = yourCalculations(slider1Output, input1)
+            var valueAfterCalculations2 = yourCalculations2(slider1Output, input3, slider2Output)
+            var valueAfterCalculations3 = yourCalculations3(d, input2, slider2Output)
+          d3.select('#outputValue3').text(valueAfterCalculations3);//this displays the results of the calcualtions
+
+      });
+
+    //an svg to put slider3 on
+    var svg = d3.select('#slider3')
+      .append('svg')
+      .attr('width', 500)
+      .attr('height', 100)
+      .append('g')
+      .attr('transform', 'translate(30,45)');
+    //call the slider as you would an axis
+    svg.call(slider3);
+
+
+    //this third and final function I wrote
+    function yourCalculations3(slider3Output, input2, slider2Output){
+            var h = (1-slider2Output)*0.6+(input2*slider3Output);
+        return h
+    }
+
+//Ta da! Thank you for giving me so much help, this would have been impossible otherwise.
+</script> -->
