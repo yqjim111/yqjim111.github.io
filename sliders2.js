@@ -16,6 +16,7 @@
     .on('onchange', function(d){//this function detects when the slider moves
 
 
+
 //the first function I wrote
   function yourCalculations(slider1Value, input1){
     if (input1 < 427){
@@ -82,14 +83,25 @@
         d3.select('#outputValue').text(valueAfterCalculations);//this displays the results of the calcualtions
         d3.select('#outputValue2').text(valueAfterCalculations2);//this is important: it makes sure slider2 updates with changes to slider1
    
+        // function getMax(arr, prop) {
+        //   var max;
+        //     for (var i=0 ; i<arr.length ; i++) {
+        //       if (!max || parseInt(arr[i][prop]) > parseInt(max[prop]))
+        //       max = arr[i];
+        //     }
+        //     return max;
+        //   }
 
+        // var maxIncome = getMax(puertoricodata, "AverageWee");
+        // console.log(maxIncome)
 
-        var Annualincome = d3.max(puertoricodata, function(d) { return d.AverageWee; });
+        // var municipality = ["A", "B", "C"];
+        // var firstRandomElement = _.shuffle(municipality)[0];
         
-        svgA1.append('text')
-            .attr('x', 0)
-            .attr('y', 70)
-            .text('Most Unemployment :' + feature.properties.MUNICIPALI)
+        // svgA1.append('text')
+        //     .attr('x', 0)
+        //     .attr('y', 0)
+        //     .text(firstRandomElement")
 
     });
 
@@ -288,7 +300,7 @@
     //an svg to put slider3 on
     var svg = d3.select('#A3')
       .append('svg')
-      .attr('width', 130)
+      .attr('width', 180)
       .attr('height', 100)
       .append('g')
       .attr('transform', 'translate(30,45)');
