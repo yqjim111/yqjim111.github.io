@@ -10,8 +10,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieXFqaW0xMTEiLCJhIjoiY2psb2k5ZGZkMXR1czNxdDV3d
 
 // MAP1
 
-var map = new mapboxgl.Map({
-    container: 'map',
+var mapUnemployment = new mapboxgl.Map({
+    container: 'mapUnemployment',
     style: 'mapbox://styles/mapbox/light-v10',
     center: [-66.42, 18.23],
     zoom: 7.5,
@@ -56,14 +56,87 @@ var tanfColor = [
                 ]  
 
 
-map.on('load', function() {
+var tanfColorSin = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'TANF_Numbe'],
+                31,'#edf8fb',
+                500,'#ccece6',
+                1000,'#99d8c9',
+                1500,'#005824',
+                2000,'#41ae76',
+                2500,'#238b45',
+                3500,'#ccece6'
+                ]  
+
+var unemploymentColorSin = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'NSA_Unempl'],
+                3,'#FD8D3C',
+                6,'#BD0026',
+                9,'#E31A1C',
+                12,'#FC4E2A',
+                15,'#800026'
+                ]
+
+var weeklyIncomeColorSin = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'AverageWee'],
+                 0, '#F2F12D',
+                 300, '#EED322',
+                 450, '#B86B25',
+                 600, '#DA9C20',
+                 750, '#F2F12D',
+                 900, '#B86B25'
+             ]
+
+var tanfColorLan = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'TANF_Numbe'],
+                31,'#edf8fb',
+                500,'#ccece6',
+                1000,'#99d8c9',
+                1500,'#005824',
+                2000,'#41ae76',
+                2500,'#99d8c9',
+                3500,'#ccece6'
+                ]  
+
+var unemploymentColorLan = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'NSA_Unempl'],
+                3,'#FC4E2A',
+                6,'#BD0026',
+                9,'#E31A1C',
+                12,'#FC4E2A',
+                15,'#FC4E2A'
+                ]
+
+
+var weeklyIncomeColorLan = [
+                 'interpolate',
+                 ['linear'],
+                 ['get', 'AverageWee'],
+                 0, '#F2F12D',
+                 300, '#EED322',
+                 450, '#EED322',
+                 600, '#DA9C20',
+                 750, '#EED322',
+                 900, '#B86B25'
+             ]
+
+mapUnemployment.on('load', function() {
  
-    map.addSource('puertoRicoAll', {
+    mapUnemployment.addSource('puertoRicoAll', {
         'type': 'geojson',
         "data":puertoricodata
     });
      
-    map.addLayer({
+    mapUnemployment.addLayer({
         'id': 'puertoRicoAll',
         'source': 'puertoRicoAll',
         'type': 'fill',
@@ -73,13 +146,14 @@ map.on('load', function() {
             'fill-opacity': 0.75
 
         }
-    });        console.log(map.getStyle().layers)
+    });        
+    // console.log(mapUnemployment.getStyle().layers)
 });
               
 
-map.on('mousemove', 'puertoRicoAll', function(e) {
+mapUnemployment.on('mousemove', 'puertoRicoAll', function(e) {
         // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
+        mapUnemployment.getCanvas().style.cursor = 'pointer';
 
         // Single out the first found feature.
         var feature = e.features[0];
@@ -87,11 +161,11 @@ map.on('mousemove', 'puertoRicoAll', function(e) {
         // Display a popup with the name of the county
         popup.setLngLat(e.lngLat)
             .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.NSA_Unempl + '%')
-            .addTo(map);
+            .addTo(mapUnemployment);
     });
 
-    map.on('mouseleave', 'puertoRicoAll', function() {
-        map.getCanvas().style.cursor = '';
+    mapUnemployment.on('mouseleave', 'puertoRicoAll', function() {
+        mapUnemployment.getCanvas().style.cursor = '';
         popup.remove();
     });
 
@@ -128,7 +202,23 @@ mapWelfare.on('load', function() {
     // console.log(mapWelfare.getStyle().layers)
 });
 
+mapWelfare.on('mousemove', 'puertoRicoAll', function(e) {
+        // Change the cursor style as a UI indicator.
+        mapWelfare.getCanvas().style.cursor = 'pointer';
 
+        // Single out the first found feature.
+        var feature = e.features[0];
+
+        // Display a popup with the name of the county
+        popup.setLngLat(e.lngLat)
+            .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.TANF_Numbe + ' ' + 'people')
+            .addTo(mapWelfare);
+    });
+
+    mapWelfare.on('mouseleave', 'puertoRicoAll', function() {
+        mapWelfare.getCanvas().style.cursor = '';
+        popup.remove();
+    });
 
 
 
@@ -162,7 +252,23 @@ mapAnnualincome.on('load', function() {
     // console.log(mapAnnualincome.getStyle().layers)
 });
 
+mapAnnualincome.on('mousemove', 'puertoRicoAll', function(e) {
+        // Change the cursor style as a UI indicator.
+        mapAnnualincome.getCanvas().style.cursor = 'pointer';
 
+        // Single out the first found feature.
+        var feature = e.features[0];
+
+        // Display a popup with the name of the county
+        popup.setLngLat(e.lngLat)
+            .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.AverageWee + ' ' + 'USD/week')
+            .addTo(mapAnnualincome);
+    });
+
+    mapAnnualincome.on('mouseleave', 'puertoRicoAll', function() {
+        mapAnnualincome.getCanvas().style.cursor = '';
+        popup.remove();
+    });
 
 
 
@@ -174,47 +280,99 @@ var popup = new mapboxgl.Popup({
 
 d3.select("#button1")
 .on("click",function(){
-    map.setPaintProperty("puertoRicoAll", 'fill-color', unemploymentColor);
-    map.on('mousemove', 'puertoRicoAll', function(e) {
-        // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
+    mapWelfare.setPaintProperty("puertoRicoAll", 'fill-color', tanfColorSin);
+    mapUnemployment.setPaintProperty("puertoRicoAll", 'fill-color', unemploymentColorSin);
+    mapAnnualincome.setPaintProperty("puertoRicoAll", 'fill-color', weeklyIncomeColorSin);
 
-        // Single out the first found feature.
-        var feature = e.features[0];
+    // // New Pop up
+    // mapUnemployment.on('mousemove', 'puertoRicoAll', function(e) {
+    //     // Change the cursor style as a UI indicator.
+    //     mapUnemployment.getCanvas().style.cursor = 'pointer';
 
-        // Display a popup with the name of the county
-        popup.setLngLat(e.lngLat)
-            .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.NSA_Unempl + '%')
-            .addTo(map);
-    });
+    //     // Single out the first found feature.
+    //     var feature = e.features[0];
 
-    map.on('mouseleave', 'puertoRicoAll', function() {
-        map.getCanvas().style.cursor = '';
-        popup.remove();
-    });
+    //     // Display a popup with the name of the county
+    //     popup.setLngLat(e.lngLat)
+    //         .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.NSA_Unempl + '%')
+    //         .addTo(mapUnemployment);
+    // });
+
+    // mapUnemployment.on('mouseleave', 'puertoRicoAll', function() {
+    //     mapUnemployment.getCanvas().style.cursor = '';
+    //     popup.remove();
+    // });
+
+    // mapAnnualincome.on('mousemove', 'puertoRicoAll', function(e) {
+    //         // Change the cursor style as a UI indicator.
+    //         mapAnnualincome.getCanvas().style.cursor = 'pointer';
+
+    //         // Single out the first found feature.
+    //         var feature = e.features[0];
+
+    //         // Display a popup with the name of the county
+    //         popup.setLngLat(e.lngLat)
+    //             .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.AverageWee + ' ' + 'USD/week')
+    //             .addTo(mapAnnualincome);
+    //     });
+
+    //     mapAnnualincome.on('mouseleave', 'puertoRicoAll', function() {
+    //         mapAnnualincome.getCanvas().style.cursor = '';
+    //         popup.remove();
+    //     });
 })
 
 
 d3.select("#button2")
 .on("click",function(){
-    map.setPaintProperty("puertoRicoAll", 'fill-color', weeklyIncomeColor);
-    map.on('mousemove', 'puertoRicoAll', function(e) {
-        // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
+    mapWelfare.setPaintProperty("puertoRicoAll", 'fill-color', tanfColorLan);
+    mapUnemployment.setPaintProperty("puertoRicoAll", 'fill-color', unemploymentColorLan);
+    mapAnnualincome.setPaintProperty("puertoRicoAll", 'fill-color', weeklyIncomeColorLan);
+    // mapUnemployment.on('mousemove', 'puertoRicoAll', function(e) {
+    //     // Change the cursor style as a UI indicator.
+    //     mapUnemployment.getCanvas().style.cursor = 'pointer';
 
-        // Single out the first found feature.
-        var feature = e.features[0];
+    //     // Single out the first found feature.
+    //     var feature = e.features[0];
 
-        // Display a popup
-        popup.setLngLat(e.lngLat)
-            .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.AverageWee)
-            .addTo(map);
-    });
+    //     // Display a popup
+    //     popup.setLngLat(e.lngLat)
+    //         .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.AverageWee)
+    //         .addTo(mapUnemployment);
+    // });
 
-    map.on('mouseleave', 'puertoRicoAll', function() {
-        map.getCanvas().style.cursor = '';
-        popup.remove();
-    });
+    // mapUnemployment.on('mouseleave', 'puertoRicoAll', function() {
+    //     mapUnemployment.getCanvas().style.cursor = '';
+    //     popup.remove();
+    // });
+})
+
+
+d3.select("#button3")
+.on("click",function(){
+    mapWelfare.setPaintProperty("puertoRicoAll", 'fill-color', tanfColor);
+    mapUnemployment.setPaintProperty("puertoRicoAll", 'fill-color', unemploymentColor);
+    mapAnnualincome.setPaintProperty("puertoRicoAll", 'fill-color', weeklyIncomeColor);
+
+    // // New Pop up
+    // mapUnemployment.on('mousemove', 'puertoRicoAll', function(e) {
+    //     // Change the cursor style as a UI indicator.
+    //     mapUnemployment.getCanvas().style.cursor = 'pointer';
+
+    //     // Single out the first found feature.
+    //     var feature = e.features[0];
+
+    //     // Display a popup with the name of the county
+    //     popup.setLngLat(e.lngLat)
+    //         .setText(feature.properties.MUNICIPALI + ' ' + feature.properties.NSA_Unempl + '%')
+    //         .addTo(mapUnemployment);
+    // });
+
+
+    // mapUnemployment.on('mouseleave', 'puertoRicoAll', function() {
+    //     mapUnemployment.getCanvas().style.cursor = '';
+    //     popup.remove();
+    // });
 })
 
 

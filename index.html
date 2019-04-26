@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="style.css">
+		<!-- <link rel="stylesheet" href="style.css"> -->
 		<title>Future Scenario</title>
 		<!-- discourage the browser from caching the page -->    
    		<meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate' />
@@ -23,6 +23,7 @@
     	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     	<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+ 		<script src="https://unpkg.com/d3-simple-slider"></script>
 
 
 	</head>
@@ -31,13 +32,24 @@
 		<div class="grid">
 			<div class="textall">
 				<div class="title">Predicting Puerto Rico</div>
-				<div class="body">Body Text</div>
+				<div class="body">
+					With the anticipated arrival of $18.5 Billion in disaster relief aid from the federal government sometime this year and general elections for a new government to take place next November, the island of Puerto Rico may see significant policy changes in the near future.
+ 
+Each of the following maps shows the present distribution of unemployment, the number of families on Temporary Assistance to Needy Families program, and average weekly income in Puerto Rico. Adjust each of the sliders to observe how changing one or multiple of these factors—through jobs creation programs, the institution of a universal basic income, or welfare expansion—might affect these distributions in the future.
+ 
+Puerto Rico has severe income inequality, higher than that of all but two nations world-wide. In fact, without certain government protection measures such as a minimum wage, income inequality may further soar, while raising the minimum wage might help many of those living in poverty climb above the Federal poverty line. Adjust the first slider to see how this may affect the income distribution island-wide.
+ 
+The Temporary Assistance to Needy Families, or TANF program, was instituted in Puerto Rico at the end of the 20th century to provide aid for families hit especially hard by a decades-long recession that preceded the crash of 2007 by nearly twenty years. The program has seen significant cutbacks as austerity measures are implemented in response to an unpayable $74 Billion Puerto Rican debt. Adjust slider 2 to see which municipalities would most be affected by a cut or increase in this social welfare program.
+ 
+The average unemployment rate of Puerto Rico more than doubles that of the United States, a number which does not reflect the entire picture, as the statistic only measures those actively seeking work. As a result of predatory extraction laws that offer American ventures incentives such as a triple tax-break for building in Puerto Rico, many businesses develop an operation on the island that doesn’t require creating many jobs for local residents. Adjust slider 3 to see how measures taken to combat unemployment, such as job creation programs, alter the unemployment distribution in Puerto Rico. 
+
+				</div>
 			</div>
 			<div class="sliderbar">
 				<!-- Slider Bar Put Here -->
-				<div class="A1">Policy1 Slider</div>
-				<div class="A2">Policy2 Slider</div>
-				<div class="A3">Policy3 Slider</div>
+				<div id="A1">Close/Broaden the Income Gap</div>
+				<div id="A2">Expand/Cut Welfare Spending</div>
+				<div id="A3">Incentivize Job Creation</div>
 			</div>
 			<div class="scenario">
 				<div class="singapore">
@@ -46,12 +58,23 @@
 				<div class="landtrust">
 					<div id="button2">Landtrust</div>
 				</div>
+				<div class="current">
+					<div id="button3">Current</div>
+				</div>
 			</div>
 			<div class="mapall" id="mapall">
-				<div class="map" id="map"></div>
+				<div class="mapUnemployment" id="mapUnemployment"></div>
 				<div class="mapWelfare" id="mapWelfare"></div>
 				<div class="mapAnnualincome" id="mapAnnualincome"></div>
+				<div class='legend'>
+					<div class='legendUnemployment'></div>
+					<div class='legendWelfare'></div>
+					<div class='legendAnnualincome'>
+						<!-- <img src = 'weeklyIncomeGradient.png' /> -->
+					</div>
+				</div>
 				<script type="text/javascript" src="map.js"></script>
+				<script type="text/javascript" src="sliders2.js"></script>
 			</div>
 		</div>
 	</body>

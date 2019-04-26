@@ -11,12 +11,12 @@
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(16, 1fr);
 	grid-template-rows: repeat(3, 1fr);;
 	grid-template-areas:
-	"mapall mapall mapall scenario textall"
-	"mapall mapall mapall sliderbar textall"
-	"mapall mapall mapall sliderbar textall";
+	"mapall mapall mapall mapall mapall mapall mapall mapall mapall legend scenario scenario scenario textall textall textall"
+	"mapall mapall mapall mapall mapall mapall mapall mapall mapall legend sliderbar sliderbar sliderbar textall textall textall"
+	"mapall mapall mapall mapall mapall mapall mapall mapall mapall legend sliderbar sliderbar sliderbar textall textall textall";
 	grid-gap: 10px;
 	width: 100vw;
 	height: 100vh;
@@ -46,7 +46,7 @@
 
 .body{
 	font-family:Helvetica;
-    font-size:16px;
+    font-size:10px;
     color:#000000;
 }
 
@@ -55,36 +55,52 @@
 	display: grid;
 	grid-template-rows: repeat(3, 1fr);
 	grid-template-areas:
-	"map"
 	"mapAnnualincome"
-	"mapWelfare";
+	"mapWelfare"
+	"mapUnemployment";
 	grid-gap: 5px;
 }
 
 .mapAnnualincome{
 	grid-area: mapAnnualincome;
+/*	display: grid;
+	grid-template-rows: repeat(6, 1fr);
+	grid-template-areas:
+	""*/
 }
+
+.mapUnemployment{
+	grid-area: mapUnemployment;
+}
+
 
 .mapWelfare{
 	grid-area: mapWelfare;
 }
 
 .sliderbar{
+	font-family:helvetica;
+    font-size:15px;
+    font-weight: 700;
+    padding:10px;
+    color:#000000;
+    text-align:center;
 	grid-area: sliderbar;
 	display: grid;
 	grid-template-rows: repeat(3, 1fr);
 	grid-template-areas:
 	"A1"
-	"A2"
-	"A3";
+	"A3"
+	"A2";
 	grid-gap: 5px;
 }
 
 .scenario{
 	grid-area: scenario;
 	display: grid;
-	grid-template-rows: repeat(2, 1fr);
+	grid-template-rows: repeat(3, 1fr);
 	grid-template-areas:
+	"current"
 	"singapore"
 	"landtrust";
 	grid-gap: 5px;
@@ -119,13 +135,13 @@
     font-size:20px;
     color:#000000;
     text-align:center;
-    padding-top:30px;
+    padding-top:10px;
     background-color:#FFFFFF;
-    width:240px;
-    height:60px;
+    width:200px;
+    height:30px;
     border-radius:45px;
     letter-spacing:2px;
-    border: 6px solid #000000;
+    border: 3px solid #000000;
     cursor:pointer;
 }
 
@@ -134,15 +150,31 @@
     font-size:20px;
     color:#000000;
     text-align:center;
-    padding-top:30px;
+    padding-top:10px;
     background-color:#FFFFFF;
-    width:240px;
-    height:60px;
+    width:200px;
+    height:30px;
     border-radius:45px;
     letter-spacing:2px;
-    border: 6px solid #000000;
+    border: 3px solid #000000;
     cursor:pointer;
 }
+
+#button3 {
+	font-family:helvetica;
+    font-size:20px;
+    color:#000000;
+    text-align:center;
+    padding-top:10px;
+    background-color:#FFFFFF;
+    width:200px;
+    height:30px;
+    border-radius:45px;
+    letter-spacing:2px;
+    border: 3px solid #000000;
+    cursor:pointer;
+}
+
 
 .map-overlay {
 font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
